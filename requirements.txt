@@ -1,0 +1,16 @@
+pytorch-lightning==1.9.5
+omegaconf==2.3.0
+matplotlib==3.5.3
+einops==0.6.1
+wandb==0.15.0
+scikit-video==1.1.11
+absl-py==2.1.0
+dm_env
+pycolab
+magnum
+scikit-learn
+torchvision
+gym
+gymnasium
+pytest
+miniworld

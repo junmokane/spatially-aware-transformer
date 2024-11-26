@@ -1,0 +1,79 @@
+result_dir: './htm/result'
+train_dir: ['./ballet_dataset/v3/dance_36_delay_0_STT_medium3/train']
+val_dir: ['./ballet_dataset/v3/dance_36_delay_0_STT_medium3/eval']
+test_dir: ['./ballet_dataset/v3/dance_36_delay_0_STT_medium3/eval']
+action_dir: './ballet_dataset/dance_random_actions'
+ckpt_dir: ''
+accelerator: 'gpu'
+wandb_mode: 'disabled'
+max_samples: null
+mode: 'train'  # train / test 
+
+opt_jm: ''
+task: '5_easy'  # 3 / 4 / 5 + easy / sinv
+model_type: 'hcam'  # tr, hcam, 
+time_emb: 'sine'  # const / sine
+core_emb: 'sine1d'  # none / learn1d / learn2d / sine1d / sine2d / fourier / const1d / const2d
+task_type: prediction  # prediction / generation
+
+train:
+  batch_size: 32  # 32, 64
+  max_epochs: 101
+  seed: 2023
+  lr: 2e-4  # 2e-4 4e-4 1e-4
+  gpus: [0]
+  num_workers: 4
+  val_check_interval: 0.25   # integer: interval, 0.0~1.0: fraction of training epoch
+  gradient_clip_val: 5.
+  limit_val_batches: 1.0  # integer: # of batches, 0.0~1.0: percentage of total batches
+  init_eps: 1.0
+  final_eps: 0.2
+  anneal_time: 200000
+
+test:
+  dup_time: 1
+
+log:
+  save_epoch_freq: 33
+  print_step_freq: 32
+  print_step_after: 128
+
+tr:
+  num_layers: 8
+  dim: 128
+  heads: 2
+  dim_head: 64
+  mlp:
+    hidden_dim: 128
+    dropout: 0.0
+
+hcam:
+  num_layers: 4
+  dim: 128
+  heads: 2
+  topk_mems: 4
+  mem_chunk_size: 32
+  dim_head: 64
+  add_pos_enc: False
+  eps: 1e-5
+  mlp:
+    hidden_dim: 128
+    dropout: 0.0
+
+data:
+  dance_type: 8
+  n_dance: 18
+  n_space: 9  # 9 / 4
+  dance_time: 16
+  delay_time: 16
+  n_action: 4
+  imagine: 40  # 40 / 20
+  len_mv: 3  # 3 / 2
+  mix_C: 4
+
+random_walk:
+  num_rooms: 25
+  action_period: 1
+  # chunk_type: time
+  spatial_embedding: False
+  spatial_reasoning: False

@@ -1,0 +1,55 @@
+result_dir: './htm/result'
+ckpt_dir: ''
+accelerator: 'gpu'
+wandb_mode: 'disabled'
+max_samples: null
+
+opt_jm: null
+task: multi     # single (2) / multi (2) / all (4) / multiinv (1)
+heur: random   # fifo / smfu / spacetime / random
+space_emb: sum_basic_space  # mem / sum + basic / learn / noemb + action
+task_type: prediction  # prediction / generation
+
+train:
+  batch_size: 32  # 32, 64
+  max_epochs: 1001
+  seed: 2023
+  lr: 2e-4  # 2e-4 4e-4 1e-4
+  gpus: [0]
+  num_workers: 4
+  val_check_interval: 0.25   # integer: interval, 0.0~1.0: fraction of training epoch
+  gradient_clip_val: 5.
+  limit_val_batches: 1.0  # integer: # of batches, 0.0~1.0: percentage of total batches
+  init_eps: 1.0
+  final_eps: 0.001
+  anneal_time: 200000
+
+log:
+  save_epoch_freq: 500
+  print_step_freq: 32
+  print_step_after: 128
+
+htm:
+  chunk_capacity: 2
+  dim: 128
+  heads: 2
+  topk_mems: 2
+  mem_chunk_size: 5
+  dim_head: 64
+  add_pos_enc: True
+  add_space_emb: False
+  time_enc_type: False   # False, Basic, Learn
+  space_enc_type: False  # False, Basic, Learn
+  eps: 1e-5
+  mlp:
+    hidden_dim: 128
+    dropout: 0.0
+
+data:
+  dance_type: 8
+  n_dance: 18
+  n_space: 8
+  dance_time: 16
+  delay_time: 16
+  n_action: 4
+  

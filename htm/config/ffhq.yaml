@@ -1,0 +1,70 @@
+result_dir: './htm/result'
+train_dir: './ffhq_dataset/thumbnails128x128/train'
+val_dir: './ffhq_dataset/thumbnails128x128/eval'
+test_dir: './ffhq_dataset/thumbnails128x128/test'
+train_pos_dir: './ffhq_dataset/ffhq_pos_data/train_372000_knn_sort.npz'
+val_pos_dir: './ffhq_dataset/ffhq_pos_data/eval_7000_knn_sort.npz'
+ckpt_dir: ''
+accelerator: 'gpu'
+wandb_mode: 'disabled'
+max_samples: null
+
+opt_jm: null
+task: null
+mode: 'train'  # train / test
+heur: 'ama'  # fifo / ama
+model_type: 'hcams'  # tr / tra / cam / cama / cams / hcams / space_model / universal
+time_emb: 'sine'  
+core_emb: 'none'  # none / learn1d / learn2d / sine1d / sine2d 
+task_type: 'generation'  # prediction / generation
+cluster_rand: 0  # 0: 8 clusters / 3: 16 clusters / 6: 32 clusters
+
+train:
+  batch_size: 32  # 32, 64
+  max_epochs: 201
+  seed: 2023
+  lr: 2e-4  # 2e-4 4e-4 1e-4
+  gpus: [0]
+  num_workers: 4
+  val_check_interval: 0.5   # integer: interval, 0.0~1.0: fraction of training epoch
+  gradient_clip_val: 5.
+  limit_val_batches: 1.0  # integer: # of batches, 0.0~1.0: percentage of total batches
+  init_eps: 1.0
+  final_eps: 0.0
+  anneal_time: 300000
+
+log:
+  save_epoch_freq: 25
+  print_step_freq: 32
+  print_step_after: 128
+
+tr:
+  num_layers: 8
+  dim: 128
+  heads: 2
+  dim_head: 64
+  add_pos_enc: False
+  mlp:
+    hidden_dim: 128
+    dropout: 0.0
+
+hcam:
+  num_layers: 4
+  dim: 128
+  heads: 2
+  topk_mems: 16
+  mem_chunk_size: 8
+  dim_head: 64
+  add_pos_enc: False
+  eps: 1e-5
+  mlp:
+    hidden_dim: 128
+    dropout: 0.0
+
+data:
+  len_mv: 10
+  width: 16
+  mv: 8
+  n_action: 4
+  memorize: 256
+  imagine: 32
