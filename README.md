@@ -18,14 +18,14 @@ pip install -r requirements.txt
 Room Ballet Short-Stay dataset consists of two parts. **Dancer dataset** and **Trajectory dataset**. You need both datasets to run the Room Ballet experiments.
 
 **Dancer dataset**
-Dancer dataset consists of videos with dancers' dancing! Each video is composed of 36 dancers where each dancer dances for 16 time steps sequentially. Dataset is available [here](https://www.dropbox.com/scl/fo/h4luqcg5hsvwfrvgio82h/h?rlkey=3ltfatjn35rwlyt5myl6muazs&dl=0). Put the dataset folder in `ballet_dataset/v3` folder. If you want to generate the data by yourself, run the following command.
+Dancer dataset consists of videos with dancers' dancing! Each video is composed of 36 dancers where each dancer dances for 16 time steps sequentially. Dataset is available [here](https://drive.google.com/drive/folders/1COlErYgyL8wk1iseL23giedDSEbCfytv). Put the dataset folder in `ballet_dataset/v3` folder. If you want to generate the data by yourself, run the following command.
 ```
 python -m ballet_dataset.ballet_generate_v1
 ```
 
 
 **Trajectory dataset**
-Trajectory dataset consists of agent's trajectory. Each file has agent's random walk trajectory in $N \times N$ grid. Here, each grid means dancer's room. Dataset is available [here](https://www.dropbox.com/scl/fo/h4luqcg5hsvwfrvgio82h/h?rlkey=3ltfatjn35rwlyt5myl6muazs&dl=0). If you want to generate this by yourself, run `ballet_dataset/generate_rw.py` for data generation. 
+Trajectory dataset consists of agent's trajectory. Each file has agent's random walk trajectory in $N \times N$ grid. Here, each grid means dancer's room. Dataset is available [here](https://drive.google.com/drive/folders/1COlErYgyL8wk1iseL23giedDSEbCfytv). If you want to generate this by yourself, run `ballet_dataset/generate_rw.py` for data generation. 
 
 ### Training
 
@@ -39,7 +39,7 @@ Different models can be trained by changing `model_type`. Use `model_type='cams'
 ## Room Ballet Multi-Task 
 ### Dataset
 
-Dataset is available [here](https://www.dropbox.com/scl/fo/h4luqcg5hsvwfrvgio82h/h/multi_tasks_dataset?dl=0&subfolder_nav_tracking=1). It consists of dancers' dances and agent's trajectory. It also includes the memory index information for each strategy (FIFO, LIFO, MVFO, LVFO). If you want to generate the data by yourself, run the following command.
+Dataset is available [here](https://drive.google.com/drive/folders/1COlErYgyL8wk1iseL23giedDSEbCfytv). It consists of dancers' dances and agent's trajectory. It also includes the memory index information for each strategy (FIFO, LIFO, MVFO, LVFO). If you want to generate the data by yourself, run the following command.
 ```
 python -m ballet_dataset.ballet_generate_v2
 ```
