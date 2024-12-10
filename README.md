@@ -1,6 +1,6 @@
-# Spatially-Aware Transformer Memory for Embodied Agents
+# Spatially-Aware Transformers for Embodied Agents
 
-This repository is the official implementation of [Spatially-Aware Transformer Memory for Embodied Agents](https://arxiv.org/abs/2402.15160). We provide the code for core experiments in our paper.
+This repository is the official implementation of [Spatially-Aware Transformers for Embodied Agents](https://arxiv.org/abs/2402.15160). We provide the code for core experiments in our paper.
 
 ## Requirements
 
